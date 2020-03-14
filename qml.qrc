@@ -1,5 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>icons/remove_bg_icons/Charge_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Charging_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Electricity_fault_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Engine_overheat_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Hand_brake_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Left_arr_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Light_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Plug_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Right_arr_remove_bg.png</file>
+        <file>icons/remove_bg_icons/Temperature_remove_bg.png</file>
+        <file>Icon.qml</file>
+        <file>Delegate.qml</file>
     </qresource>
 </RCC>

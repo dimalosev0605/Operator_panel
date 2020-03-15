@@ -139,7 +139,8 @@ Window {
                         anchors.horizontalCenter: odometer.horizontalCenter
                         width: 60
                         height: 43
-                        img.source: "qrc:/icons/remove_bg_icons/Hand_brake_remove_bg.png"
+                        is_active: true
+                        img_source: "qrc:/icons/remove_bg_icons/Hand_brake_remove_bg_passive.png"
                     }
                 }
             }
@@ -199,7 +200,7 @@ Window {
             anchors.centerIn: parent
             width: parent.width - 25
             height: parent.height - 35
-            img.source: "qrc:/icons/remove_bg_icons/Charge_remove_bg.png"
+            img_source: "qrc:/icons/remove_bg_icons/Charge_remove_bg.png"
         }
     }
     ListView {
@@ -343,55 +344,264 @@ Window {
                digital_info_row.count_of_columns
         property int item_height: digital_info_row.height
         property int font_point_size: 7
-        Text {
-            id: hydsys_oil_temp
+        property string attention_color: "#ff0000"
+        property string digits_color: "gray"
+        Column {
             width: digital_info_row.item_width
             height: digital_info_row.item_height
-            textFormat: Text.RichText
-            verticalAlignment: Text.AlignBottom
-            horizontalAlignment: Text.AlignHCenter
-            font.pointSize: digital_info_row.font_point_size
-            text: '<font size="16" color="gray">105</font><font size="5" color="gray"> C\u00B0</font><br><br><font size="4" color="white">ТЕМП. МАСЛА<br><br>ГИДРОСИСТЕМЫ</font>'
+            Rectangle {
+                width: parent.width
+                height: parent.height / 2
+                color: hydsys_oil_temp.is_attention ? digital_info_row.attention_color : "#000000"
+                border.width: 2
+                border.color: hydsys_oil_temp.is_attention ? digital_info_row.digits_color : "#000000"
+                Text {
+                    id: hydsys_oil_temp
+                    anchors.centerIn: parent
+                    property bool is_attention: false
+                    width: parent.width
+                    height: parent.height / 2
+                    textFormat: Text.RichText
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pointSize: digital_info_row.font_point_size
+                    color: is_attention ? "#000000" : digital_info_row.digits_color
+                    text: '<font size="16">105</font><font size="5"> C\u00B0</font>'
+                }
+            }
+            Text {
+                id: hydsys_oil_temp_text
+                width: parent.width
+                height: parent.height / 2
+                textFormat: Text.RichText
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: digital_info_row.font_point_size
+                text: '<font size="4" color="white">ТЕМП. МАСЛА<br>ГИДРОСИСТЕМЫ</font>'
+            }
         }
-        Text {
-            id: hydsys_oil_pressure
+        Column {
             width: digital_info_row.item_width
             height: digital_info_row.item_height
-            textFormat: Text.RichText
-            verticalAlignment: Text.AlignBottom
-            horizontalAlignment: Text.AlignHCenter
-            font.pointSize: digital_info_row.font_point_size
-            text: '<font size="16" color="gray">10.1</font><font size="5" color="gray"> МПа</font><br><br><font size="4" color="white">ДАВЛ. МАСЛА<br><br>ГИДРОСИСТЕМЫ</font>'
+            Rectangle {
+                width: parent.width
+                height: parent.height / 2
+                color: hydsys_oil_pressure.is_attention ? digital_info_row.attention_color : "#000000"
+                border.width: 2
+                border.color: hydsys_oil_pressure.is_attention ? digital_info_row.digits_color : "#000000"
+                Text {
+                    id: hydsys_oil_pressure
+                    anchors.centerIn: parent
+                    property bool is_attention: false
+                    width: parent.width
+                    height: parent.height / 2
+                    textFormat: Text.RichText
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pointSize: digital_info_row.font_point_size
+                    color: is_attention ? "#000000" : digital_info_row.digits_color
+                    text: '<font size="16">10.1</font><font size="5"> МПа</font>'
+                }
+            }
+            Text {
+                id: hydsys_oil_pressure_text
+                width: parent.width
+                height: parent.height / 2
+                textFormat: Text.RichText
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: digital_info_row.font_point_size
+                text: '<font size="4" color="white">ДАВЛ. МАСЛА<br>ГИДРОСИСТЕМЫ</font>'
+            }
         }
-        Text {
-            id: oil_pressure_diff
+        Column {
             width: digital_info_row.item_width
             height: digital_info_row.item_height
-            textFormat: Text.RichText
-            verticalAlignment: Text.AlignBottom
-            horizontalAlignment: Text.AlignHCenter
-            font.pointSize: digital_info_row.font_point_size
-            text: '<font size="16" color="gray">0.3</font><font size="5" color="gray"> Мпа</font><br><br><font size="4" color="white">ДАВЛ. МАСЛА<br><br>ПЕРЕПАД</font>'
+            Rectangle {
+                width: parent.width
+                height: parent.height / 2
+                color: oil_pressure_diff.is_attention ? digital_info_row.attention_color : "#000000"
+                border.width: 2
+                border.color: oil_pressure_diff.is_attention ? digital_info_row.digits_color : "#000000"
+                Text {
+                    id: oil_pressure_diff
+                    anchors.centerIn: parent
+                    property bool is_attention: false
+                    width: parent.width
+                    height: parent.height / 2
+                    textFormat: Text.RichText
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pointSize: digital_info_row.font_point_size
+                    color: is_attention ? "#000000" : digital_info_row.digits_color
+                    text: '<font size="16">0.3</font><font size="5"> МПа</font>'
+                }
+            }
+            Text {
+                id: oil_pressure_diff_text
+                width: parent.width
+                height: parent.height / 2
+                textFormat: Text.RichText
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: digital_info_row.font_point_size
+                text: '<font size="4" color="white">ДАВЛ. МАСЛА<br>ПЕРЕПАД</font>'
+            }
         }
-        Text {
-            id: left_cool_liquid_temp
+        Column {
             width: digital_info_row.item_width
             height: digital_info_row.item_height
-            textFormat: Text.RichText
-            verticalAlignment: Text.AlignBottom
-            horizontalAlignment: Text.AlignHCenter
-            font.pointSize: digital_info_row.font_point_size
-            text: '<font size="16" color="gray">75</font><font size="5" color="gray"> C\u00B0</font><br><br><font size="4" color="white">ТЕМП. ЖИДК.<br><br>СВО ЛЕВ. СТ.</font>'
+            Rectangle {
+                width: parent.width
+                height: parent.height / 2
+                color: left_cool_liquid_temp.is_attention ? digital_info_row.attention_color : "#000000"
+                border.width: 2
+                border.color: left_cool_liquid_temp.is_attention ? digital_info_row.digits_color : "#000000"
+                Text {
+                    id: left_cool_liquid_temp
+                    anchors.centerIn: parent
+                    property bool is_attention: false
+                    width: parent.width
+                    height: parent.height / 2
+                    textFormat: Text.RichText
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pointSize: digital_info_row.font_point_size
+                    color: is_attention ? "#000000" : digital_info_row.digits_color
+                    text: '<font size="16">75</font><font size="5"> C\u00B0</font>'
+                }
+            }
+            Text {
+                id: left_cool_liquid_temp_text
+                width: parent.width
+                height: parent.height / 2
+                textFormat: Text.RichText
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: digital_info_row.font_point_size
+                text: '<font size="4" color="white">ТЕМП. ЖИДК.<br>СВО ЛЕВ. СТ.</font>'
+            }
         }
-        Text {
-            id: right_cool_liquid_temp
+        Column {
             width: digital_info_row.item_width
             height: digital_info_row.item_height
-            textFormat: Text.RichText
-            verticalAlignment: Text.AlignBottom
-            horizontalAlignment: Text.AlignHCenter
-            font.pointSize: digital_info_row.font_point_size
-            text: '<font size="16" color="gray">85</font><font size="5" color="gray"> C\u00B0</font><br><br><font size="4" color="white">ТЕМП. ЖИДК.<br><br>СВО ПРАВ. СТ.</font>'
+            Rectangle {
+                width: parent.width
+                height: parent.height / 2
+                color: right_cool_liquid_temp.is_attention ? digital_info_row.attention_color : "#000000"
+                border.width: 2
+                border.color: right_cool_liquid_temp.is_attention ? digital_info_row.digits_color : "#000000"
+                Text {
+                    id: right_cool_liquid_temp
+                    anchors.centerIn: parent
+                    property bool is_attention: true
+                    width: parent.width
+                    height: parent.height / 2
+                    textFormat: Text.RichText
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    font.pointSize: digital_info_row.font_point_size
+                    color: is_attention ? "#000000" : digital_info_row.digits_color
+                    text: '<font size="16">85</font><font size="5"> C\u00B0</font>'
+                }
+            }
+            Text {
+                id: right_cool_liquid_temp_text
+                width: parent.width
+                height: parent.height / 2
+                textFormat: Text.RichText
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: digital_info_row.font_point_size
+                text: '<font size="4" color="white">ТЕМП. ЖИДК.<br>СВО ПРАВ. СТ.</font>'
+            }
         }
     }
+
+    Icon {
+        id: left_arr_icon
+        anchors.verticalCenter: outer_rect.verticalCenter
+        anchors.right: outer_rect.left
+        anchors.rightMargin: 15
+        width: 85
+        height: 60
+        img_source: "qrc:/icons/remove_bg_icons/Left_arr_remove_bg_passive.png"
+    }
+    Icon {
+        id: right_arr_icon
+        is_active: true
+        anchors.verticalCenter: outer_rect.verticalCenter
+        anchors.left: outer_rect.right
+        anchors.leftMargin: left_arr_icon.anchors.rightMargin
+        width: left_arr_icon.width
+        height: left_arr_icon.height
+        img_source: "qrc:/icons/remove_bg_icons/Right_arr_remove_bg_passive.png"
+    }
+
+    // left_side_icons
+    Icon {
+        id: low_energy_icon
+        anchors.left: digital_info_row.left
+        anchors.leftMargin: 20
+        anchors.bottom: digital_info_row.top
+        anchors.bottomMargin: 10
+        width: 40
+        height: 40
+        is_active: true
+        img_source: "qrc:/icons/remove_bg_icons/Low_energy_remove_bg_passive.png"
+    }
+    Icon {
+        id: electricity_fault_icon
+        anchors.left: low_energy_icon.right
+        anchors.leftMargin: 30
+        anchors.verticalCenter: low_energy_icon.verticalCenter
+        width: 50
+        height: low_energy_icon.height
+        is_active: true
+        img_source: "qrc:/icons/remove_bg_icons/Electricity_fault_remove_bg_passive.png"
+    }
+    Icon {
+        id: is_charging_icon
+        anchors.bottom: low_energy_icon.top
+        anchors.bottomMargin: 20
+        anchors.left: low_energy_icon.left
+        width: 60
+        height: 40
+        is_active: true
+        img_source: "qrc:/icons/remove_bg_icons/Is_charging_remove_bg_passive.png"
+    }
+
+    // right_side_icons
+    Icon {
+        id: engine_overheat_icon
+        anchors.right: digital_info_row.right
+        anchors.rightMargin: low_energy_icon.anchors.leftMargin
+        anchors.bottom: digital_info_row.top
+        anchors.bottomMargin: low_energy_icon.anchors.bottomMargin
+        width: 60
+        height: 35
+        is_active: true
+        img_source: "qrc:/icons/remove_bg_icons/Engine_overheat_remove_bg_passive.png"
+    }
+    Icon {
+        id: cooling_liquid_temp_overhead_icon
+        anchors.right: engine_overheat_icon.left
+        anchors.rightMargin: 25
+        anchors.bottom: engine_overheat_icon.bottom
+        width: 50
+        height: 50
+        is_active: true
+        img_source: "qrc:/icons/remove_bg_icons/Cooling_liquid_temp_overhead_remove_bg_passive.png"
+    }
+    Icon {
+        id: light_icon
+        anchors.bottom: engine_overheat_icon.top
+        anchors.bottomMargin: 20
+        anchors.right: engine_overheat_icon.right
+        width: 60
+        height: 50
+        is_active: true
+        img_source: "qrc:/icons/remove_bg_icons/Light_remove_bg_passive.png"
+    }
+
 }

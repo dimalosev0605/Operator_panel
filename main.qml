@@ -53,6 +53,14 @@ Window {
         Keys.onReturnPressed: {
             Qt.quit()
         }
+        Keys.onUpPressed: {
+            if(wheel_turn.x < wheel_turn_frame.width - wheel_turn.width - line_repeater.line_width * 2)
+                wheel_turn.x += line_repeater.line_width * 2
+        }
+        Keys.onDownPressed: {
+            if(wheel_turn.x > line_repeater.line_width)
+                wheel_turn.x -= line_repeater.line_width * 2
+        }
         // temporary
 
         style: CircularGaugeStyle {
@@ -96,18 +104,18 @@ Window {
             }
             foreground: Item {
                 Item {
-                    id: texts
+                    id: gauge_info
                     anchors.centerIn: parent
                     height: outerRadius
                     width: height
                     Text {
                         id: speed
                         textFormat: Text.RichText
-                        width: texts.width
-                        height: texts.height - odometer.height
+                        width: gauge_info.width
+                        height: gauge_info.height - odometer.height
                         verticalAlignment: Text.AlignBottom
                         horizontalAlignment: Text.AlignHCenter
-                        color: "white"
+                        color: "#ffffff"
                         font.pointSize: 18
                         text: '<font size="16">' + gauge.value + '</font><font size="3">км/ч</font>'
                     }
@@ -116,7 +124,7 @@ Window {
                         anchors.top: speed.bottom
                         anchors.left: speed.left
                         textFormat: Text.RichText
-                        width: texts.width
+                        width: gauge_info.width
                         height: 40
                         verticalAlignment: Text.AlignBottom
                         horizontalAlignment: Text.AlignHCenter
@@ -197,6 +205,7 @@ Window {
     ListView {
         id: charge_view
         anchors.left: charge_shape.left
+        anchors.right: charge_shape.right
         anchors.top: charge_shape.bottom
         anchors.topMargin: 10
         anchors.bottom: parent.bottom
@@ -282,4 +291,107 @@ Window {
         }
     }
 
+    Rectangle {
+        id: wheel_turn_frame
+        z: 0
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
+        anchors.left: charge_view.right
+        anchors.leftMargin: 10
+        anchors.right: pwr_view.left
+        anchors.rightMargin: 10
+        height: 50
+        border.width: line_repeater.line_width
+        border.color: "#d1d1d1"
+        radius: 5
+        color: "#000000"
+        Repeater {
+            id: line_repeater
+            model: 11
+            property int space: wheel_turn_frame.width / (count + 1)
+            property int line_width: 2
+            Rectangle {
+                z: 2
+                x: (index + 1) * line_repeater.space
+                y: 6
+                width: line_repeater.line_width
+                height: wheel_turn_frame.height - y * 2
+                color: wheel_turn_frame.border.color
+            }
+        }
+        Rectangle {
+            id: wheel_turn
+            z: 1
+            x: wheel_turn_frame.border.width * 1 + line_repeater.space * 5
+            y: wheel_turn_frame.border.width * 2
+            height: wheel_turn_frame.height - y * 2
+            color: "#00ff00"
+            width: line_repeater.space * 2 - line_repeater.line_width
+        }
+    }
+    Row {
+        id: digital_info_row
+        anchors.left: wheel_turn_frame.left
+        anchors.right: wheel_turn_frame.right
+        anchors.bottom: wheel_turn_frame.top
+        anchors.bottomMargin: 10
+        anchors.top: outer_rect.bottom
+        anchors.topMargin: 10
+        spacing: 10
+        property int count_of_columns: 5
+        property int item_width: (digital_info_row.width - digital_info_row.spacing * (digital_info_row.count_of_columns - 1)) /
+               digital_info_row.count_of_columns
+        property int item_height: digital_info_row.height
+        property int font_point_size: 7
+        Text {
+            id: hydsys_oil_temp
+            width: digital_info_row.item_width
+            height: digital_info_row.item_height
+            textFormat: Text.RichText
+            verticalAlignment: Text.AlignBottom
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: digital_info_row.font_point_size
+            text: '<font size="16" color="gray">105</font><font size="5" color="gray"> C\u00B0</font><br><br><font size="4" color="white">ТЕМП. МАСЛА<br><br>ГИДРОСИСТЕМЫ</font>'
+        }
+        Text {
+            id: hydsys_oil_pressure
+            width: digital_info_row.item_width
+            height: digital_info_row.item_height
+            textFormat: Text.RichText
+            verticalAlignment: Text.AlignBottom
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: digital_info_row.font_point_size
+            text: '<font size="16" color="gray">10.1</font><font size="5" color="gray"> МПа</font><br><br><font size="4" color="white">ДАВЛ. МАСЛА<br><br>ГИДРОСИСТЕМЫ</font>'
+        }
+        Text {
+            id: oil_pressure_diff
+            width: digital_info_row.item_width
+            height: digital_info_row.item_height
+            textFormat: Text.RichText
+            verticalAlignment: Text.AlignBottom
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: digital_info_row.font_point_size
+            text: '<font size="16" color="gray">0.3</font><font size="5" color="gray"> Мпа</font><br><br><font size="4" color="white">ДАВЛ. МАСЛА<br><br>ПЕРЕПАД</font>'
+        }
+        Text {
+            id: left_cool_liquid_temp
+            width: digital_info_row.item_width
+            height: digital_info_row.item_height
+            textFormat: Text.RichText
+            verticalAlignment: Text.AlignBottom
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: digital_info_row.font_point_size
+            text: '<font size="16" color="gray">75</font><font size="5" color="gray"> C\u00B0</font><br><br><font size="4" color="white">ТЕМП. ЖИДК.<br><br>СВО ЛЕВ. СТ.</font>'
+        }
+        Text {
+            id: right_cool_liquid_temp
+            width: digital_info_row.item_width
+            height: digital_info_row.item_height
+            textFormat: Text.RichText
+            verticalAlignment: Text.AlignBottom
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: digital_info_row.font_point_size
+            text: '<font size="16" color="gray">85</font><font size="5" color="gray"> C\u00B0</font><br><br><font size="4" color="white">ТЕМП. ЖИДК.<br><br>СВО ПРАВ. СТ.</font>'
+        }
+    }
 }

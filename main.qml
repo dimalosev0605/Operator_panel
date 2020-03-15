@@ -140,7 +140,7 @@ Window {
                         width: 60
                         height: 43
                         is_active: true
-                        img_source: "qrc:/icons/remove_bg_icons/Hand_brake_remove_bg_passive.png"
+                        img_source: "qrc:/icons/Hand_brake_passive.png"
                     }
                 }
             }
@@ -200,7 +200,8 @@ Window {
             anchors.centerIn: parent
             width: parent.width - 25
             height: parent.height - 35
-            img_source: "qrc:/icons/remove_bg_icons/Charge_remove_bg.png"
+            is_active: true
+            img_source: "qrc:/icons/Level_of_charge_passive.png"
         }
     }
     ListView {
@@ -525,7 +526,7 @@ Window {
         anchors.rightMargin: 15
         width: 85
         height: 60
-        img_source: "qrc:/icons/remove_bg_icons/Left_arr_remove_bg_passive.png"
+        img_source: "qrc:/icons/Left_arr_passive.png"
     }
     Icon {
         id: right_arr_icon
@@ -535,7 +536,7 @@ Window {
         anchors.leftMargin: left_arr_icon.anchors.rightMargin
         width: left_arr_icon.width
         height: left_arr_icon.height
-        img_source: "qrc:/icons/remove_bg_icons/Right_arr_remove_bg_passive.png"
+        img_source: "qrc:/icons/Right_arr_passive.png"
     }
 
     // left_side_icons
@@ -548,7 +549,7 @@ Window {
         width: 40
         height: 40
         is_active: true
-        img_source: "qrc:/icons/remove_bg_icons/Low_energy_remove_bg_passive.png"
+        img_source: "qrc:/icons/Low_energy_passive.png"
     }
     Icon {
         id: electricity_fault_icon
@@ -558,7 +559,7 @@ Window {
         width: 50
         height: low_energy_icon.height
         is_active: true
-        img_source: "qrc:/icons/remove_bg_icons/Electricity_fault_remove_bg_passive.png"
+        img_source: "qrc:/icons/Electricity_fault_passive.png"
     }
     Icon {
         id: is_charging_icon
@@ -568,7 +569,7 @@ Window {
         width: 60
         height: 40
         is_active: true
-        img_source: "qrc:/icons/remove_bg_icons/Is_charging_remove_bg_passive.png"
+        img_source: "qrc:/icons/Is_charging_passive.png"
     }
 
     // right_side_icons
@@ -581,7 +582,7 @@ Window {
         width: 60
         height: 35
         is_active: true
-        img_source: "qrc:/icons/remove_bg_icons/Engine_overheat_remove_bg_passive.png"
+        img_source: "qrc:/icons/Engine_overheat_passive.png"
     }
     Icon {
         id: cooling_liquid_temp_overhead_icon
@@ -591,7 +592,7 @@ Window {
         width: 50
         height: 50
         is_active: true
-        img_source: "qrc:/icons/remove_bg_icons/Cooling_liquid_temp_overhead_remove_bg_passive.png"
+        img_source: "qrc:/icons/Cooling_liquid_temp_overhead_passive.png"
     }
     Icon {
         id: light_icon
@@ -601,7 +602,65 @@ Window {
         width: 60
         height: 50
         is_active: true
-        img_source: "qrc:/icons/remove_bg_icons/Light_remove_bg_passive.png"
+        img_source: "qrc:/icons/Light_passive.png"
+    }
+
+    // operating_mode_icons
+    Icon {
+        id: gripper_is_upped_icon
+        x: outer_rect.x - width
+        y: outer_rect.y - 30
+        width: 87
+        height: width
+//        is_active: true
+        img_source: "qrc:/icons/Gripper_is_upped_passive.png"
+    }
+    Icon {
+        id: gripper_is_down_icon
+        anchors.bottom: gripper_is_upped_icon.top
+        anchors.left: gripper_is_upped_icon.right
+        anchors.leftMargin: 20
+        width: gripper_is_upped_icon.width
+        height: width
+//        is_active: true
+        img_source: "qrc:/icons/Gripper_is_down_passive.png"
+    }
+
+    Icon {
+        id: loaded_gripper_is_upped_icon
+        x: outer_rect.x + outer_rect.width
+        y: gripper_is_upped_icon.y
+        width: gripper_is_upped_icon.width
+        height: width
+//        is_active: true
+        img_source: "qrc:/icons/Loaded_gripper_is_upped_passive.png"
+    }
+    Icon {
+        id: loaded_gripper_is_down_icon
+        anchors.right: loaded_gripper_is_upped_icon.left
+        anchors.rightMargin: gripper_is_down_icon.anchors.leftMargin
+        anchors.bottom: loaded_gripper_is_upped_icon.top
+        width: gripper_is_upped_icon.width
+        height: width
+//        is_active: true
+        img_source: "qrc:/icons/Loaded_gripper_is_down_passive.png"
+    }
+
+    Text {
+        id: mode
+        anchors.top: parent.top
+        anchors.horizontalCenter: parent.horizontalCenter
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        width: parent.width - charge_shape.width - pwr_shape.width
+        height: gripper_is_down_icon.y
+        fontSizeMode: Text.Fit
+        minimumPointSize: 1
+        font.pointSize: 15
+        elide: Text.ElideRight
+        wrapMode: Text.WordWrap
+        color: "#ffffff"
+        text: "РЕЖИМ: МАНЕВРИРОВАНИЕ"
     }
 
 }

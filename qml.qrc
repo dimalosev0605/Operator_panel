@@ -1,26 +1,35 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>icons/remove_bg_icons/Charge_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Electricity_fault_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Engine_overheat_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Hand_brake_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Left_arr_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Light_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Right_arr_remove_bg.png</file>
         <file>Icon.qml</file>
         <file>Delegate.qml</file>
-        <file>icons/remove_bg_icons/Hand_brake_remove_bg_passive.png</file>
-        <file>icons/remove_bg_icons/Left_arr_remove_bg_passive.png</file>
-        <file>icons/remove_bg_icons/Right_arr_remove_bg_passive.png</file>
-        <file>icons/remove_bg_icons/Electricity_fault_remove_bg_passive.png</file>
-        <file>icons/remove_bg_icons/Engine_overheat_remove_bg_passive.png</file>
-        <file>icons/remove_bg_icons/Light_remove_bg_passive.png</file>
-        <file>icons/remove_bg_icons/Low_energy_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Low_energy_remove_bg_passive.png</file>
-        <file>icons/remove_bg_icons/Is_charging_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Is_charging_remove_bg_passive.png</file>
-        <file>icons/remove_bg_icons/Cooling_liquid_temp_overhead_remove_bg.png</file>
-        <file>icons/remove_bg_icons/Cooling_liquid_temp_overhead_remove_bg_passive.png</file>
+        <file>icons/Cooling_liquid_temp_overhead_active.png</file>
+        <file>icons/Cooling_liquid_temp_overhead_passive.png</file>
+        <file>icons/Electricity_fault_active.png</file>
+        <file>icons/Electricity_fault_passive.png</file>
+        <file>icons/Engine_overheat_active.png</file>
+        <file>icons/Engine_overheat_passive.png</file>
+        <file>icons/Hand_brake_active.png</file>
+        <file>icons/Hand_brake_passive.png</file>
+        <file>icons/Is_charging_active.png</file>
+        <file>icons/Is_charging_passive.png</file>
+        <file>icons/Left_arr_active.png</file>
+        <file>icons/Left_arr_passive.png</file>
+        <file>icons/Level_of_charge_active.png</file>
+        <file>icons/Level_of_charge_passive.png</file>
+        <file>icons/Light_active.png</file>
+        <file>icons/Light_passive.png</file>
+        <file>icons/Low_energy_active.png</file>
+        <file>icons/Low_energy_passive.png</file>
+        <file>icons/Right_arr_active.png</file>
+        <file>icons/Right_arr_passive.png</file>
+        <file>icons/Gripper_is_down_active.png</file>
+        <file>icons/Gripper_is_down_passive.png</file>
+        <file>icons/Gripper_is_upped_active.png</file>
+        <file>icons/Gripper_is_upped_passive.png</file>
+        <file>icons/Loaded_gripper_is_down_active.png</file>
+        <file>icons/Loaded_gripper_is_down_passive.png</file>
+        <file>icons/Loaded_gripper_is_upped_active.png</file>
+        <file>icons/Loaded_gripper_is_upped_passive.png</file>
     </qresource>
 </RCC>

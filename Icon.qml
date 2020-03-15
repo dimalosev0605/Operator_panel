@@ -9,6 +9,6 @@ Rectangle {
     Image {
         id: img
         anchors.fill: parent
-        source: is_active ? img_source.replace("_passive.png", ".png") : img_source
+        source: is_active ? img_source.replace("passive.png", "active.png") : img_source
     }
 }

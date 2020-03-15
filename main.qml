@@ -139,7 +139,7 @@ Window {
                         anchors.horizontalCenter: odometer.horizontalCenter
                         width: 60
                         height: 43
-                        is_active: true
+//                        is_active: true
                         img_source: "qrc:/icons/Hand_brake_passive.png"
                     }
                 }
@@ -200,7 +200,7 @@ Window {
             anchors.centerIn: parent
             width: parent.width - 25
             height: parent.height - 35
-            is_active: true
+//            is_active: true
             img_source: "qrc:/icons/Level_of_charge_passive.png"
         }
     }
@@ -495,7 +495,7 @@ Window {
                 Text {
                     id: right_cool_liquid_temp
                     anchors.centerIn: parent
-                    property bool is_attention: true
+                    property bool is_attention: false
                     width: parent.width
                     height: parent.height / 2
                     textFormat: Text.RichText
@@ -530,12 +530,12 @@ Window {
     }
     Icon {
         id: right_arr_icon
-        is_active: true
         anchors.verticalCenter: outer_rect.verticalCenter
         anchors.left: outer_rect.right
         anchors.leftMargin: left_arr_icon.anchors.rightMargin
         width: left_arr_icon.width
         height: left_arr_icon.height
+//        is_active: true
         img_source: "qrc:/icons/Right_arr_passive.png"
     }
 
@@ -548,7 +548,7 @@ Window {
         anchors.bottomMargin: 10
         width: 40
         height: 40
-        is_active: true
+//        is_active: true
         img_source: "qrc:/icons/Low_energy_passive.png"
     }
     Icon {
@@ -558,7 +558,7 @@ Window {
         anchors.verticalCenter: low_energy_icon.verticalCenter
         width: 50
         height: low_energy_icon.height
-        is_active: true
+//        is_active: true
         img_source: "qrc:/icons/Electricity_fault_passive.png"
     }
     Icon {
@@ -568,7 +568,7 @@ Window {
         anchors.left: low_energy_icon.left
         width: 60
         height: 40
-        is_active: true
+//        is_active: true
         img_source: "qrc:/icons/Is_charging_passive.png"
     }
 
@@ -581,7 +581,7 @@ Window {
         anchors.bottomMargin: low_energy_icon.anchors.bottomMargin
         width: 60
         height: 35
-        is_active: true
+//        is_active: true
         img_source: "qrc:/icons/Engine_overheat_passive.png"
     }
     Icon {
@@ -591,7 +591,7 @@ Window {
         anchors.bottom: engine_overheat_icon.bottom
         width: 50
         height: 50
-        is_active: true
+//        is_active: true
         img_source: "qrc:/icons/Cooling_liquid_temp_overhead_passive.png"
     }
     Icon {
@@ -601,7 +601,7 @@ Window {
         anchors.right: engine_overheat_icon.right
         width: 60
         height: 50
-        is_active: true
+//        is_active: true
         img_source: "qrc:/icons/Light_passive.png"
     }
 
@@ -612,7 +612,7 @@ Window {
         y: outer_rect.y - 30
         width: 87
         height: width
-//        is_active: true
+        is_active: true
         img_source: "qrc:/icons/Gripper_is_upped_passive.png"
     }
     Icon {
@@ -622,7 +622,7 @@ Window {
         anchors.leftMargin: 20
         width: gripper_is_upped_icon.width
         height: width
-//        is_active: true
+        is_active: true
         img_source: "qrc:/icons/Gripper_is_down_passive.png"
     }
 
@@ -632,7 +632,7 @@ Window {
         y: gripper_is_upped_icon.y
         width: gripper_is_upped_icon.width
         height: width
-//        is_active: true
+        is_active: true
         img_source: "qrc:/icons/Loaded_gripper_is_upped_passive.png"
     }
     Icon {
@@ -642,7 +642,7 @@ Window {
         anchors.bottom: loaded_gripper_is_upped_icon.top
         width: gripper_is_upped_icon.width
         height: width
-//        is_active: true
+        is_active: true
         img_source: "qrc:/icons/Loaded_gripper_is_down_passive.png"
     }
 
@@ -662,5 +662,4 @@ Window {
         color: "#ffffff"
         text: "РЕЖИМ: МАНЕВРИРОВАНИЕ"
     }
-
 }

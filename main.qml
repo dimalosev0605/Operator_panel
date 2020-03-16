@@ -23,6 +23,7 @@ Window {
         radius: height / 2
         color: "#7777a2"
     }
+
     Rectangle {
         id: middle_rect
         z: 1
@@ -60,6 +61,122 @@ Window {
         Keys.onDownPressed: {
             if(wheel_turn.x > line_repeater.line_width)
                 wheel_turn.x -= line_repeater.line_width * 2
+        }
+        Keys.onDigit0Pressed: {
+            hydsys_oil_temp.is_attention ? hydsys_oil_temp.is_attention = false :
+                                           hydsys_oil_temp.is_attention = true;
+        }
+        Keys.onDigit1Pressed: {
+            hydsys_oil_pressure.is_attention ? hydsys_oil_pressure.is_attention = false :
+                                               hydsys_oil_pressure.is_attention = true
+        }
+        Keys.onDigit2Pressed: {
+            oil_pressure_diff.is_attention ? oil_pressure_diff.is_attention = false :
+                                             oil_pressure_diff.is_attention = true
+        }
+        Keys.onDigit3Pressed: {
+            left_cool_liquid_temp.is_attention ? left_cool_liquid_temp.is_attention = false :
+                                                 left_cool_liquid_temp.is_attention = true
+        }
+        Keys.onDigit4Pressed: {
+            right_cool_liquid_temp.is_attention ? right_cool_liquid_temp.is_attention = false :
+                                                  right_cool_liquid_temp.is_attention = true
+        }
+        Keys.onDigit5Pressed: {
+            left_arr_icon.is_active ? left_arr_icon.is_active = false :
+                                      left_arr_icon.is_active = true
+        }
+        Keys.onDigit6Pressed: {
+            right_arr_icon.is_active ? right_arr_icon.is_active = false :
+                                       right_arr_icon.is_active = true
+        }
+        Keys.onDigit7Pressed: {
+            low_energy_icon.is_active ? low_energy_icon.is_active = false :
+                                        low_energy_icon.is_active = true
+        }
+        Keys.onDigit8Pressed:  {
+            electricity_fault_icon.is_active ? electricity_fault_icon.is_active = false :
+                                               electricity_fault_icon.is_active = true
+        }
+        Keys.onDigit9Pressed:  {
+            is_charging_icon.is_active ? is_charging_icon.is_active = false :
+                                         is_charging_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+0"
+            onActivated: engine_overheat_icon.is_active ? engine_overheat_icon.is_active = false :
+                                                          engine_overheat_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+1"
+            onActivated: cooling_liquid_temp_overhead_icon.is_active ? cooling_liquid_temp_overhead_icon.is_active = false :
+                                                                       cooling_liquid_temp_overhead_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+2"
+            onActivated: light_icon.is_active ? light_icon.is_active = false :
+                                                light_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+3"
+            onActivated: gripper_is_upped_icon.is_active ? gripper_is_upped_icon.is_active = false :
+                                                           gripper_is_upped_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+4"
+            onActivated: gripper_is_down_icon.is_active ? gripper_is_down_icon.is_active = false :
+                                                          gripper_is_down_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+5"
+            onActivated: loaded_gripper_is_upped_icon.is_active ? loaded_gripper_is_upped_icon.is_active = false :
+                                                                  loaded_gripper_is_upped_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+6"
+            onActivated: loaded_gripper_is_down_icon.is_active ? loaded_gripper_is_down_icon.is_active = false :
+                                                                 loaded_gripper_is_down_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+7"
+            onActivated: charge_icon.is_active ? charge_icon.is_active = false :
+                                                 charge_icon.is_active = true
+        }
+        Shortcut {
+            sequence: "Ctrl+8"
+            onActivated: {
+                if(charge_view.currentIndex < charge_view.count - 1) {
+                    ++charge_view.currentIndex;
+                    charge_view.currentItem.flag = false
+                }
+            }
+        }
+        Shortcut {
+            sequence: "Ctrl+9"
+            onActivated: {
+                if(charge_view.currentIndex >= 0) {
+                    charge_view.currentItem.flag = true
+                    --charge_view.currentIndex
+                }
+            }
+        }
+        Shortcut {
+            sequence: "Ctrl+Q"
+            onActivated: {
+                if(pwr_view.currentIndex < pwr_view.count - 1) {
+                    ++pwr_view.currentIndex
+                    pwr_view.currentItem.flag = false
+                }
+            }
+        }
+        Shortcut {
+            sequence: "Ctrl+W"
+            onActivated: {
+                if(pwr_view.currentIndex >= 0) {
+                    pwr_view.currentItem.flag = true
+                    --pwr_view.currentIndex
+                }
+            }
         }
         // temporary
 
@@ -139,7 +256,6 @@ Window {
                         anchors.horizontalCenter: odometer.horizontalCenter
                         width: 60
                         height: 43
-//                        is_active: true
                         img_source: "qrc:/icons/Hand_brake_passive.png"
                     }
                 }
@@ -159,7 +275,7 @@ Window {
         property int radius: 6
         ShapePath {
             id: charge_shape_path
-            strokeColor: "#cfcfcf"
+            strokeColor: "#afafaf"
             strokeStyle: ShapePath.DashLine
             joinStyle: ShapePath.RoundJoin
             fillColor: "transparent"
@@ -200,7 +316,6 @@ Window {
             anchors.centerIn: parent
             width: parent.width - 25
             height: parent.height - 35
-//            is_active: true
             img_source: "qrc:/icons/Level_of_charge_passive.png"
         }
     }
@@ -214,6 +329,7 @@ Window {
         anchors.bottomMargin: 10
         model: 10
         spacing: 5
+        currentIndex: -1
         delegate: Delegate {
             what_view: 1
         }
@@ -288,6 +404,7 @@ Window {
         anchors.bottomMargin: charge_view.anchors.bottomMargin
         model: charge_view.model
         spacing: charge_view.spacing
+        currentIndex: -1
         delegate: Delegate {
             what_view: 0
         }
@@ -535,7 +652,6 @@ Window {
         anchors.leftMargin: left_arr_icon.anchors.rightMargin
         width: left_arr_icon.width
         height: left_arr_icon.height
-//        is_active: true
         img_source: "qrc:/icons/Right_arr_passive.png"
     }
 
@@ -548,7 +664,6 @@ Window {
         anchors.bottomMargin: 10
         width: 40
         height: 40
-//        is_active: true
         img_source: "qrc:/icons/Low_energy_passive.png"
     }
     Icon {
@@ -558,7 +673,6 @@ Window {
         anchors.verticalCenter: low_energy_icon.verticalCenter
         width: 50
         height: low_energy_icon.height
-//        is_active: true
         img_source: "qrc:/icons/Electricity_fault_passive.png"
     }
     Icon {
@@ -568,7 +682,6 @@ Window {
         anchors.left: low_energy_icon.left
         width: 60
         height: 40
-//        is_active: true
         img_source: "qrc:/icons/Is_charging_passive.png"
     }
 
@@ -581,7 +694,6 @@ Window {
         anchors.bottomMargin: low_energy_icon.anchors.bottomMargin
         width: 60
         height: 35
-//        is_active: true
         img_source: "qrc:/icons/Engine_overheat_passive.png"
     }
     Icon {
@@ -591,7 +703,6 @@ Window {
         anchors.bottom: engine_overheat_icon.bottom
         width: 50
         height: 50
-//        is_active: true
         img_source: "qrc:/icons/Cooling_liquid_temp_overhead_passive.png"
     }
     Icon {
@@ -601,7 +712,6 @@ Window {
         anchors.right: engine_overheat_icon.right
         width: 60
         height: 50
-//        is_active: true
         img_source: "qrc:/icons/Light_passive.png"
     }
 
@@ -612,7 +722,6 @@ Window {
         y: outer_rect.y - 30
         width: 87
         height: width
-        is_active: true
         img_source: "qrc:/icons/Gripper_is_upped_passive.png"
     }
     Icon {
@@ -622,7 +731,6 @@ Window {
         anchors.leftMargin: 20
         width: gripper_is_upped_icon.width
         height: width
-        is_active: true
         img_source: "qrc:/icons/Gripper_is_down_passive.png"
     }
 
@@ -632,7 +740,6 @@ Window {
         y: gripper_is_upped_icon.y
         width: gripper_is_upped_icon.width
         height: width
-        is_active: true
         img_source: "qrc:/icons/Loaded_gripper_is_upped_passive.png"
     }
     Icon {
@@ -642,7 +749,6 @@ Window {
         anchors.bottom: loaded_gripper_is_upped_icon.top
         width: gripper_is_upped_icon.width
         height: width
-        is_active: true
         img_source: "qrc:/icons/Loaded_gripper_is_down_passive.png"
     }
 

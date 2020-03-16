@@ -6,7 +6,10 @@ Rectangle {
     width: charge_shape.width
     height: (charge_view.height - (charge_view.count - 1) * charge_view.spacing) / charge_view.count
     radius: 5
-    color: if(what_view) {
+    property bool flag: true
+
+    color: if(flag) {
+        if(what_view) {
                if(index === 6 || index === 7) {
                    "#ddff00"
                }
@@ -27,5 +30,9 @@ Rectangle {
                else {
                    "#00ff00"
                }
+           }
+           }
+           else {
+               "gray"
            }
 }
